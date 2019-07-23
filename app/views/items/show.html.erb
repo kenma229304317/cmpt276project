@@ -1,0 +1,66 @@
+<style>
+  img {
+    max-width: 600px;
+    max-height: 500px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  #banner {
+    font-size: 2.8em;
+    font-family: 'Audiowide';
+  }
+
+  #body {
+    width: 60%;
+    margin: 0px auto;
+  }
+</style>
+
+<body>
+
+
+  <div id="banner" class="w3-card w3-flat-belize-hole">
+    <div>
+      Gotta Do...
+    </div>
+  </div>
+  <br>
+  <div class="w3-cotainers" style="margin: 0px auto;max-width:80%;">
+    <div class="w3-row">
+
+      <div class="w3-col s4">
+        <div class="w3-cotainers w3-left">
+          <img src=<%= @item.image_url %>>
+        </div>
+      </div>
+
+      <div class="w3-col s6">
+        <div class="w3-containers">
+          <h1><%= @item.title %></h1>
+        </div>
+        <br>
+        <div class="w3-cotainers">
+          <h3>Description:</h3>
+          <%= @item.description %>
+        </div>
+        <p>
+          <strong>Finished:</strong>
+          <%= @item.finished %>
+        </p>
+
+        <p>
+          <strong>Star:</strong>
+          <%= @item.star %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <%= link_to '<i class="material-icons" style="font-size:24px">edit</i>'.html_safe, edit_item_path(@item) ,class:"w3-btn w3-ripple w3-blue"%>
+  </p>
+  <p>
+    <%= link_to '<i class="material-icons" style="font-size:24px">chevron_left</i>'.html_safe, items_path,class:"w3-btn w3-ripple w3-blue"%>
+  </p>
+</body>

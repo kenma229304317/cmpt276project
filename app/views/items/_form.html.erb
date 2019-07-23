@@ -1,0 +1,70 @@
+<style>
+#text_field{
+  padding:8px;
+  display:block;
+  border:none;
+  border-bottom:1px solid #ccc;
+  width:100%
+  }
+#label{
+
+}
+#checkbox{
+
+}
+#text_box{
+  height: 150px;
+  width: 100%;
+}
+#submit{
+  border:none;
+  display:inline-block;
+  padding:8px 16px;
+  vertical-align:middle;
+  overflow:hidden;
+  text-decoration:none;
+  color:inherit;
+  background-color:inherit;
+  text-align:center;
+  cursor:pointer;
+  white-space:nowrap
+}
+</style>
+
+
+<%= form_with(model: item, local: true) do |form| %>
+  <div class="field" >
+    <%= form.label :title ,:id=>"label"%>
+    <%= form.text_field :title ,:id=>"text_field"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :description, :id=>"label"%>
+    <%= form.text_area :description ,:id=>"text_box"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :image_url ,:id=>"label"%>
+    <%= form.text_field :image_url ,:id=>"text_field"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :finished ,:id=>"label"%>
+    <%= form.check_box :finished ,:id=>"checkbox"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :star ,:id=>"label"%>
+    <%= form.check_box :star ,:id=>"checkbox"%>
+  </div>
+
+
+  <div class="field">
+    <%= form.hidden_field :email, :value => current_user.email %>
+  </div>
+
+  <div class="actions w3-buttom">
+    <%= form.submit %>
+  </div>
+<% end %>
+

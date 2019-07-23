@@ -1,0 +1,111 @@
+<style>
+  .w3-card-4 {
+    width: 60%;
+    margin: 0px auto;
+  }
+
+  img.image {
+    max-width: 250px;
+    max-height: 200px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  #banner {
+    /* background-color:#FF9912; */
+    font-size: 2.8em;
+    font-family: 'Audiowide';
+  }
+
+</style>
+
+<body>
+
+
+
+
+  <div class="w3-card w3-flat-belize-hole">
+    <div class="w3-row">
+      <div class="w3-col s10">
+        <div id="banner">
+          Gotta Do...
+        </div>
+      </div>
+      <div class="w3-col s2 w3-right-align">
+        <% if signed_in? %>
+        Signed in as: <%= current_user.email %>
+        <%= button_to 'Log off', sign_out_path, method: :delete , :class=>"w3-button w3-light-gray "%>
+        <% else %>
+        <%= link_to 'Sign in', sign_in_path %>
+        <% end %>
+
+        <div id="flash">
+          <% flash.each do |key, value| %>
+          <div class="flash <%= key %>"><%= value %></div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <input class="w3-input w3-border w3-padding" type="text" placeholder="Search for titles..." id="myInput"
+    onkeyup="myFunction()">
+  <br>
+  <br>
+  <div id="cardlist" class="w3-table">
+    <% @items.each do |item| %>
+    <%next if current_user.email != item.email %>
+      <div id="myCard" class="w3-card-4 w3-border-blue w3-leftbar ">
+        <header class="w3-container">
+          <h2 id="card-title"><%= item.title %></h2>
+        </header>
+        <br>
+        <div class="w3-row" style="height:200px">
+          <div class="w3-cotainer ">
+            <div class="w3-col s3 w3-center w3-cell-middle"><img class="image " src=<%=item.image_url%>></div>
+          </div>
+          <div class="w3-col s6">
+            <div class="w3-container w3-cell w3-center w3-cell-middle">
+              <%=item.description%>
+            </div>
+          </div>
+          <div class="w3-col s3">
+            <div class="w3-bar w3-center">
+              <%= link_to '<i class="material-icons">search</i>'.html_safe, item, class:'w3-button w3-blue',style:'text-decoration:none;'%>
+              <%= link_to '<i class="material-icons">&#xe3c9;</i>'.html_safe, edit_item_path(item),class:'w3-button w3-yellow',style:'text-decoration:none;'%>
+              <%= link_to '<i class="material-icons">&#xe872;</i>'.html_safe, item, method: :delete, data: { confirm: 'Are you sure?' },class:'w3-button w3-red',style:'text-decoration:none;'%>
+            </div>
+          </div>
+        </div>
+        <br>
+  </div>
+  <br>
+  <% end %>
+  </div>
+  <br>
+
+  <div class="w3-display-bottomright w3-card w3-flat-peter-river" style="margin:7% 0%;box-shadow: 3px 3px 5px #888888;position: fixed;">
+    <%= link_to'<i class=" w3-xlarge material-icons">playlist_add</i>'.html_safe, new_item_path, class:'w3-button no_underline'%>
+  </div>
+  </div>
+</body>
+
+<script>
+  function myFunction() {
+    var input, filter, cards, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    cards = document.querySelectorAll("#myCard");
+    for (i = 0; i < cards.length; i++) {
+      title = cards[i].getElementsByTagName("h2");
+      txtValue = title[0].textContent || title[0].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        cards[i].style.display = "";
+      } else {
+        cards[i].style.display = "none";
+      }
+    }
+  }
+</script>

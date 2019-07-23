@@ -1,0 +1,28 @@
+<style>
+#banner{
+    font-size: 2.8em;
+    font-family: 'Audiowide';
+  }
+.w3-card-4 {
+    width: 80%;
+    margin: 30px;
+    margin: 0px auto;
+  }
+</style>
+
+
+<div id="banner" class="w3-card w3-flat-belize-hole">
+    Gotta Do...
+</div>
+<br>
+<br>
+<div class="w3-card-4 w3-border-blue w3-leftbar w3-padding-32" style="padding-left:30px;padding-right:30px">
+
+<%= render 'form', item: @item %>
+</div>
+<p>
+<%= link_to '<i class="material-icons" style="font-size:24px">search</i>'.html_safe, items_path ,class:"w3-btn w3-ripple w3-blue"%>
+</p>
+<p>
+<%= link_to '<i class="material-icons" style="font-size:24px">chevron_left</i>'.html_safe, @item ,class:"w3-btn w3-ripple w3-blue"%>
+</p>
